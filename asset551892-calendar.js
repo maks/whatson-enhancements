@@ -12,7 +12,7 @@
     $('#calendar').datepicker({
         inline: true,
         firstDay: 1,
-        showOtherMonths: false,
+        showOtherMonths: true,
         minDate: new Date(),
         hideIfNoPrevNext: true,
         dateFormat: "yy-mm-dd",
@@ -21,7 +21,11 @@
             window.location.search = "period="+weekRange(dateText);
         }
     });
-    var startDateParam = window.location.search.match(/(\d\d\d\d-\d+-\d+),/);
+    var startDateParam = window.location.search.match(/(\d\d\d\d-\d+-\d+),/)[1];
+    var endDateParam = window.location.search.match(/,(\d\d\d\d-\d+-\d+)$/)[1];
+
+    console.log("str:"+startDateParam+" end:"+endDateParam);
+
     if (startDateParam && startDateParam[1]) {
        $('#calendar').datepicker("setDate", startDateParam[1]);
     }
